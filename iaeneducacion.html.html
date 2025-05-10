@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Experiencia con IA | Exploración Tecnológica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #9d00ff;
+            --accent: #ff00aa;
+            --text: #e0e0e0;
+            --dark-bg: #0a0a20;
+            --menu-bg: rgba(15, 10, 35, 0.95);
+            --content-bg: rgba(20, 20, 50, 0.8);
+            --neon-glow: 0 0 10px rgba(0, 247, 255, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background: var(--dark-bg) url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1600') no-repeat center center fixed;
+            background-size: cover;
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .cosmic-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10, 10, 32, 0.9) 0%, rgba(4, 2, 19, 0.95) 100%);
+            z-index: -1;
+        }
+        
+        /* Menú Lateral */
+        .sidebar {
+            width: 280px;
+            background: var(--menu-bg);
+            backdrop-filter: blur(10px);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 2rem 1rem;
+            border-right: 1px solid rgba(0, 247, 255, 0.1);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        
+        .personal-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 1rem;
+            box-shadow: var(--neon-glow);
+        }
+        
+        .university-logo {
+            width: 180px;
+            margin: 1.5rem auto;
+            display: block;
+            filter: drop-shadow(0 0 5px rgba(0, 247, 255, 0.5));
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+        }
+        
+        .sidebar-nav a i {
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--primary);
+            box-shadow: inset 0 0 10px rgba(0, 247, 255, 0.2);
+        }
+        
+        .sidebar-nav a.active {
+            border-left: 3px solid var(--accent);
+        }
+        
+        .sidebar-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .section {
+            background: var(--content-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-shadow: var(--neon-glow);
+            letter-spacing: 2px;
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+        }
+        
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Sección de Herramientas IA */
+        .ai-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-card {
+            background: rgba(10, 15, 35, 0.6);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 247, 255, 0.1);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .tool-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-card h4 i {
+            margin-right: 0.7rem;
+        }
+        
+        .tool-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.7rem;
+        }
+        
+        .tool-card a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Proyecto Educativo */
+        .project-card {
+            background: rgba(10, 15, 35, 0.6);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 65%, rgba(157, 0, 255, 0.1) 100%);
+            z-index: -1;
+        }
+        
+        .project-card h3 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
+
+        /* Nueva sección para página adicional */
+        .webpage-card {
+            background: rgba(20, 10, 40, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .webpage-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,0,170,0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .webpage-card h3 {
+            color: var(--accent);
+            border-bottom: none;
+        }
+
+        .webpage-preview {
+            width: 100%;
+            height: 200px;
+            background: #111;
+            margin: 1rem 0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+
+        .webpage-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .webpage-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .webpage-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Botón de Menú Móvil */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(20, 20, 50, 0.8);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        /* Efectos de Partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .webpage-preview {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-overlay"></div>
+    <div id="particles-js"></div>
+    
+    <!-- Botón de menú móvil -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Menú Lateral -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="c:\Users\Jorge Monrroy\Desktop\JORGELMD\firmaJLMD-LOGO\LOGO-JLMD\JLMD-LOGO.JPG" alt="Tu Logo Personal" class="personal-logo">
+            <h2>DR JORGE MONROY</h2>
+            <p>Explorador de IA</p>
+            
+            <img src="c:\Users\Jorge Monrroy\Desktop\JORGELMD\A-Desktop-JLMD\AA.JORGELMD\PATO-5-uan-MED-1\0-LOGO-UAN\Diapositiva1.JPG" alt="Universidad Antonio Nariño" class="university-logo">
+        </div>
+        
+        <ul class="sidebar-nav">
+            <li><a href="#inicio" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#experiencia"><i class="fas fa-user-astronaut"></i> Mi Experiencia</a></li>
+            <li><a href="#reflexiones"><i class="fas fa-brain"></i> Reflexiones</a></li>
+            <li><a href="#herramientas"><i class="fas fa-robot"></i> Herramientas IA</a></li>
+            <li><a href="#otra-pagina"><i class="fas fa-globe"></i> Mi Otra Página</a></li>
+            <li><a href="#motivacion"><i class="fas fa-rocket"></i> Motivación</a></li>
+            <li><a href="#proyecto"><i class="fas fa-flask"></i> Proyecto Educativo</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>Conéctate conmigo: alejoma@gmail.com</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <section id="inicio" class="section">
+            <h1>EXPLORANDO EL FUTURO CON INTELIGENCIA ARTIFICIAL</h1>
+            <p>Bienvenido a mi espacio digital donde comparto mi viaje de aprendizaje y descubrimiento en el fascinante mundo de la Inteligencia Artificial. Esta página fue creada completamente con asistencia de IA, demostrando el poder de estas tecnologías.</p>
+            
+            <div class="project-card">
+                <h3><i class="fas fa-star"></i> Proyecto Educativo Destacado</h3>
+                <p>Te invito a conocer mi proyecto educativo donde aplico estos conocimientos en un contexto académico:</p>
+                <a href="https://alejoma131322aa.github.io/PatCELULAR_DR-JLMD/" class="project-link" target="_blank">Ver Proyecto</a>
+            </div>
+        </section>
+        
+        <section id="experiencia" class="section">
+            <h2><i class="fas fa-user-astronaut"></i> MI EXPERIENCIA CON IA</h2>
+            <p>Mi trayectoria con la Inteligencia Artificial ha sido un viaje de constante asombro y aprendizaje. Desde mis primeros experimentos con chatbots hasta el desarrollo de proyectos complejos, cada interacción ha ampliado mi comprensión de lo que es posible.</p>
+            
+            <h3>Flujo de trabajo con IA</h3>
+            <p>Para crear esta página, seguí un proceso metódico:</p>
+            <ol>
+                <li><strong>Diseño de prompts estructurados:</strong> Aprendí a comunicarme claramente con la IA para obtener resultados precisos.</li>
+                <li><strong>Generación inicial con DeepSeek:</strong> Utilicé esta potente IA para crear el esqueleto del código HTML.</li>
+                <li><strong>Refinamiento en VS Code:</strong> Con herramientas de IA integradas, optimicé el código y añadí elementos personalizados.</li>
+                <li><strong>Implementación en GitHub:</strong> Finalmente, desplegué el proyecto usando GitHub Pages, completando el ciclo.</li>
+            </ol>
+            
+            <p>Este flujo de trabajo demuestra cómo la IA puede actuar como colaboradora en el proceso creativo, no como simple herramienta.</p>
+        </section>
+        
+        <section id="reflexiones" class="section">
+            <h2><i class="fas fa-brain"></i> REFLEXIONES SOBRE IA</h2>
+            
+            <article>
+                <h3>Lo que me sorprende de la IA</h3>
+                <p>La capacidad de <strong>co-creación</strong> es lo más asombroso. Sistemas como DeepSeek no solo responden preguntas, sino que colaboran activamente en el proceso creativo. Su habilidad para entender contexto y generar código funcional es revolucionaria.</p>
+                <p>También me maravilla cómo democratiza el acceso a habilidades técnicas complejas. Con las herramientas adecuadas, cualquier persona puede ahora prototipar aplicaciones, analizar datos o, como en este caso, desarrollar sitios web sofisticados.</p>
+            </article>
+            
+            <article>
+                <h3>Mis preocupaciones y sugerencias</h3>
+                <p>La principal inquietud es la <strong>dependencia cognitiva</strong>. Debemos evitar que la IA reemplace nuestro pensamiento crítico. También me preocupa la brecha digital que podría ampliarse si estos recursos no son accesibles para todos.</p>
+                <p>Sugiero tres pilares para un futuro equilibrado:</p>
+                <ul>
+                    <li>Educación en alfabetización AI desde las escuelas</li>
+                    <li>Marcos éticos transparentes para el desarrollo y uso de IA</li>
+                    <li>Herramientas de verificación de contenido generado por IA integradas en plataformas digitales</li>
+                </ul>
+            </article>
+            
+            <article>
+                <h3>Mis retos de aprendizaje</h3>
+                <p>El mayor desafío es mantenerme actualizado en un campo que evoluciona exponencialmente. Dominar nuevas técnicas como el <strong>prompt engineering</strong> requiere práctica constante.</p>
+                <p>También trabajo en desarrollar mi criterio para evaluar outputs de IA, aprendiendo a discernir cuando la información es precisa o necesita verificación. Este equilibrio entre confianza y escepticismo saludable es fundamental.</p>
+            </article>
+        </section>
+        
+        <section id="herramientas" class="section">
+            <h2><i class="fas fa-robot"></i> HERRAMIENTAS DE IA RECOMENDADAS</h2>
+            <p>Estas son algunas de las herramientas de IA que he encontrado más útiles en mi aprendizaje:</p>
+            
+            <div class="ai-tools">
+                <!-- Generación de Texto -->
+                <div class="tool-card">
+                    <h4><i class="fas fa-keyboard"></i> DeepSeek</h4>
+                    <p>Chat avanzado para generación de código y texto con excelente comprensión contextual.</p>
+                    <a href="https://www.deepseek.com" target="_blank">Visitar</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h4><i class="fas fa-comment"></i> ChatGPT</h4>
+                    <p>El conocido chatbot de OpenAI, útil para brainstorming y respuestas generales.</p>
+                    <a href="https://chat.openai.com" target="_blank">Visitar</a>
+                </div>
+                
+                <!-- Generación de Imágenes -->
+                <div class="tool-card">
+                    <h4><i class="fas fa-image"></i> Midjourney</h4>
+                    <p>Generador de imágenes artísticas mediante prompts de texto.</p>
+                    <a href="https://www.midjourney.com" target="_blank">Visitar</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h4><i class="fas fa-paint-brush"></i> DALL-E</h4>
+                    <p>Sistema de OpenAI para generación y edición de imágenes.</p>
+                    <a href="https://openai.com/dall-e" target="_blank">Visitar</a>
+                </div>
+                
+                <!-- Generación de Código -->
+                <div class="tool-card">
+                    <h4><i class="fas fa-code"></i> GitHub Copilot</h4>
+                    <p>Asistente de programación que sugiere código en tiempo real.</p>
+                    <a href="https://github.com/features/copilot" target="_blank">Visitar</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h4><i class="fas fa-laptop-code"></i> VS Code + IA</h4>
+                    <p>Extensiones de IA para el editor de código de Microsoft.</p>
+                    <a href="https://code.visualstudio.com" target="_blank">Visitar</a>
+                </div>
+                
+                <!-- Generación de Video -->
+                <div class="tool-card">
+                    <h4><i class="fas fa-video"></i> Runway ML</h4>
+                    <p>Herramientas creativas de IA para generación y edición de video.</p>
+                    <a href="https://runwayml.com" target="_blank">Visitar</a>
+                </div>
+                
+                <div class="tool-card">
+                    <h4><i class="fas fa-film"></i> Synthesia</h4>
+                    <p>Plataforma para crear videos con avatares digitales.</p>
+                    <a href="https://www.synthesia.io" target="_blank">Visitar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva sección para la otra página -->
+        <section id="otra-pagina" class="section">
+            <h2><i class="fas fa-globe"></i> MI PÁGINA WEB DE GUÍA</h2>
+            <p>Te invito a explorar otro de los proyectos web donde se aplicó diferentes tecnologías y enfoques creativos:</p>
+            
+            <div class="webpage-card">
+                <h3>First Web Page - Mi Primera Página - EDUCATIVA</h3>
+                <p>Un proyecto inicial donde se exploró los fundamentos del desarrollo web antes de adentrarme en el mundo de la IA:</p>
+                
+                <div class="webpage-preview">
+                    <iframe src="https://emersonuan.github.io/firstwebpage/" loading="lazy"></iframe>
+                </div>
+                
+                <a href="https://emersonuan.github.io/firstwebpage/" class="webpage-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visitar Página
+                </a>
+            </div>
+        </section>
+        
+        <section id="motivacion" class="section">
+            <h2><i class="fas fa-rocket"></i> MOTIVACIÓN</h2>
+            <p>La Inteligencia Artificial no es solo tecnología, es una extensión de nuestra capacidad creativa y cognitiva. Cada día descubro que los límites de lo posible se expanden, y eso es profundamente motivador.</p>
+            
+            <blockquote style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic;">
+                "La IA es el espejo de nuestra inteligencia colectiva. Lo que vemos en ella es un reflejo de lo mejor y lo peor de nosotros mismos. Elegir cómo usarla es quizás el desafío más importante de nuestra generación."
+            </blockquote>
+            
+            <p>Te animo a explorar estas herramientas, a experimentar sin miedo al error, y a encontrar en la IA un aliado para amplificar tu potencial creativo e intelectual.</p>
+        </section>
+        
+        <section id="proyecto" class="section">
+            <h2><i class="fas fa-flask"></i> PROYECTO EDUCATIVO</h2>
+            <p>Como parte de mi compromiso con la educación y la divulgación tecnológica, he desarrollado un proyecto educativo que aplica estos conceptos en un contexto académico:</p>
+            
+            <div class="project-card">
+                <h3>Patología Celular - Proyecto Educativo</h3>
+                <p>Un recurso educativo innovador que combina conocimientos médicos con tecnología de vanguardia, demostrando la aplicación transversal de la IA en diferentes disciplinas.</p>
+                <a href="https://alejoma131322aa.github.io/PatCELULAR_DR-JLMD/" class="project-link" target="_blank">Explorar Proyecto</a>
+            </div>
+            
+            <p style="margin-top: 2rem;">Este proyecto representa mi visión de cómo la IA puede potenciar la educación, haciendo el conocimiento más accesible y atractivo para las nuevas generaciones.</p>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace (en móviles)
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+        
+        // Resaltar elemento activo en el menú
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Inicializar partículas
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00f7ff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#9d00ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // Asegurar que el menú se cierre al cambiar a pantalla grande
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
